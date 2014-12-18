@@ -1,6 +1,36 @@
+# Build
+
+## Debian/Ubuntu
+* apt-get install -qq -yy git mercurial  bison make curl
+* wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-insta
+ller
+* bash /tmp/gvm-installer
+* source ~/.gvm/scripts/gvm
+* gvm install go1.4
+* gvm use go1.4 --global
+* go get github.com/mattn/gom
+* gom install
+* gom build
+* cp aerospike_client /usr/local/sbin
+* cp config.yaml /etc/aerospike_client.yaml
+* edit /etc/aerospike_client.yaml
+* run /usr/local/sbin/aerospike_client --config=/etc/aerospike_client.yaml
+
+## Mac OS X (homebrew)
+* brew install git mercurial  bison make curl
+* wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-insta
+ller
+* bash /tmp/gvm-installer
+* source ~/.gvm/scripts/gvm
+* gvm install go1.4
+* gvm use go1.4 --global
+* go get github.com/mattn/gom
+* gom install
+* gom build
+* run ./aerospike_client --config=config.yaml
+
+
 # HTTP Interface for Aerospike
-
-
 
 ## Example HTTP Request/Response
 
