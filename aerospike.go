@@ -16,6 +16,7 @@ type AeroResponse struct {
     Bins       *aerospike.BinMap `json:"bins"`
     Generation int               `json:"version"`
     Expiration int               `json:"ttl"`
+    PrimaryKey string            `json:"pk"`
 }
 
 var aerospike_connection_lock sync.Mutex

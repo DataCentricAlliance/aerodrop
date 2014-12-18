@@ -14,9 +14,11 @@ type AeroPK struct {
 func (storage *AerospikeStorage) BatchGet(query AeroPK) *[]*AeroResponse {
     var (
         records []*aerospike.Record
+        record  *aerospike.Record
         err     error
         Key     *aerospike.Key
         Keys    []*aerospike.Key
+        Bin     AeroResponse
         Bins    []*AeroResponse
     )
 
@@ -37,13 +39,19 @@ func (storage *AerospikeStorage) BatchGet(query AeroPK) *[]*AeroResponse {
         return nil
     }
     for idx := range records {
-        if records[idx] == nil {
+        record = records[idx]
+        if record == nil {
             Bins = append(Bins, nil)
         } else {
-            Bins = append(Bins, &AeroResponse{
-                Bins:       &records[idx].Bins,
-                Generation: records[idx].Generation,
-                Expiration: records[idx].Expiration})
+            Bin = AeroResponse{
+                Bins:       &record.Bins,
+                Generation: record.Generation,
+                Expiration: record.Expiration,
+            }
+            if record.Key.Value() != nil {
+                Bin.PrimaryKey = record.Key.Value().String()
+            }
+            Bins = append(Bins, &Bin)
         }
     }
     return &Bins
@@ -54,6 +62,7 @@ func (storage *AerospikeStorage) Get(query AeroPK) *AeroResponse {
         record *aerospike.Record
         err    error
         Key    *aerospike.Key
+        Bin    AeroResponse
     )
     policy := aerospike.NewPolicy()
     policy.Timeout = time.Duration(config.Aerospike.ReadTimeout) * time.Millisecond
@@ -67,5 +76,13 @@ func (storage *AerospikeStorage) Get(query AeroPK) *AeroResponse {
     if record == nil {
         return nil
     }
-    return &AeroResponse{Bins: &record.Bins, Generation: record.Generation, Expiration: record.Expiration}
+    Bin = AeroResponse{
+        Bins:       &record.Bins,
+        Generation: record.Generation,
+        Expiration: record.Expiration,
+    }
+    if record.Key.Value() != nil {
+        Bin.PrimaryKey = record.Key.Value().String()
+    }
+    return &Bin
 }

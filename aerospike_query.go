@@ -23,6 +23,7 @@ func (storage *AerospikeStorage) Query(query AeroQuery) *[]AeroResponse {
         err       error
         recordset *aerospike.Recordset
         Bins      []AeroResponse
+        Bin       AeroResponse
         policy    *aerospike.QueryPolicy
     )
 
@@ -43,10 +44,15 @@ func (storage *AerospikeStorage) Query(query AeroQuery) *[]AeroResponse {
         return nil
     }
     for record = range recordset.Records {
-        Bins = append(Bins, AeroResponse{
+        Bin = AeroResponse{
             Bins:       &record.Bins,
             Generation: record.Generation,
-            Expiration: record.Expiration})
+            Expiration: record.Expiration}
+        if record.Key.Value() != nil {
+            Bin.PrimaryKey = record.Key.Value().String()
+        }
+
+        Bins = append(Bins, Bin)
     }
     return &Bins
 }

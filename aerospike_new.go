@@ -27,6 +27,7 @@ func (storage *AerospikeStorage) Put(query AeroNew) bool {
 
     policy = aerospike.NewWritePolicy(query.data.Meta.Generation, query.data.Meta.Ttl)
     policy.Timeout = time.Duration(config.Aerospike.WriteTimeout) * time.Millisecond
+    policy.SendKey = true
     Key, _ = aerospike.NewKey(query.namespace, query.set, query.pk)
     if err = storage.Client.Put(policy, Key, query.data.Bins); err != nil {
         panic(err)
