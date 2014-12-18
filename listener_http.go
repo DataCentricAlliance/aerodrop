@@ -96,7 +96,8 @@ func HttpHandlerV1Query(w http.ResponseWriter, req *http.Request, namespace stri
         query.queries[query_name] = cond
     }
     repsonses = aerospike_storage.Query(query)
-,        encoder.Encode(*repsonses)
+    if *repsonses != nil {
+        encoder.Encode(*repsonses)
     } else {
         w.WriteHeader(404)
     }
@@ -169,7 +170,8 @@ func HttpHandlerV1(w http.ResponseWriter, req *http.Request) {
             HttpHandlerV1IndexRemove(w, req, namespace, set, parts[0])
             break
         }
-        break
+        panic(fmt.Sprintf("Unknown method %s for action %s", req.Method, action))
+
     case "item":
         if len(parts) != 1 || parts[0] == "" {
             panic("Need PK")
