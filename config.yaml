@@ -1,0 +1,11 @@
+aerospike:
+    connection_timeout: 100
+    read_timeout: 1
+    write_timeout: 10
+    hosts:
+        -
+            host: aero-base.bali
+            port: 3000
+
+http:
+    port: 8080

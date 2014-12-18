@@ -1,0 +1,6 @@
+*swp
+_vendor
+aerospike-proxy
+*.prof
+reports/*
+.DS_Store
