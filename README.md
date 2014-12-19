@@ -34,7 +34,7 @@
 
 ### Response explain
     bins - user data
-    ttl - is meta argument with record's ttl
+    expiration - meta argument with time until expiration
     version - record's generation
     pk - primary key of record
 
@@ -117,7 +117,7 @@ Content-Type: application/json
 Date: Thu, 18 Dec 2014 15:34:19 GMT
 Content-Length: 56
 
-{"bins":{"user_id_7782":"7782"},"version":1,"ttl":3600, "pk": "7782"}
+{"bins":{"user_id_7782":"7782"},"version":1,"expiration":3600, "pk": "7782"}
 ```
 
 #### Batch Request by Primary Key
@@ -139,7 +139,7 @@ Content-Type: application/json
 Date: Thu, 18 Dec 2014 15:34:20 GMT
 Content-Length: 286
 
-[null, {"bins":{"user_id":"xxxx"},"version":1,"ttl":159189797, "pk": "1"},{"bins":{"bin":"post_id_2","user_id":"user_1"},"version":3,"ttl":156955627, "pk": "2"},{"bins":{"bin":"post_id_3","user_id":"user_1"},"version":1,"ttl":156955620, "pk": "3"},{"bins":{"bin":"post_id_4","user_id":"user_1"},"version":1,"ttl":156955624, "pk": "4"}, null, null]
+[null, {"bins":{"user_id":"xxxx"},"version":1,"expiration":159189797, "pk": "1"},{"bins":{"bin":"post_id_2","user_id":"user_1"},"version":3,"expiration":156955627, "pk": "2"},{"bins":{"bin":"post_id_3","user_id":"user_1"},"version":1,"expiration":156955620, "pk": "3"},{"bins":{"bin":"post_id_4","user_id":"user_1"},"version":1,"expiration":156955624, "pk": "4"}, null, null]
 ```
 
 
@@ -170,7 +170,7 @@ Content-Type: application/json
 Date: Thu, 18 Dec 2014 15:34:20 GMT
 Content-Length: 63
 
-[{"bins":{"user_id_7782":"7782"},"version":1,"ttl":156616459, "pk": "7782"}]
+[{"bins":{"user_id_7782":"7782"},"version":1,"expiration":156616459, "pk": "7782"}]
 ```
 
 # Know Problems
