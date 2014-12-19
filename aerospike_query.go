@@ -16,14 +16,13 @@ type AeroQuery struct {
     queries   map[string]AeroQueryCond
 }
 
-func (storage *AerospikeStorage) Query(query AeroQuery) *[]AeroResponse {
+func (storage *AerospikeStorage) Query(query AeroQuery) *[]*AeroResponse {
     var (
         record    *aerospike.Record
         stm       *aerospike.Statement
         err       error
         recordset *aerospike.Recordset
-        Bins      []AeroResponse
-        Bin       AeroResponse
+        Bins      []*AeroResponse
         policy    *aerospike.QueryPolicy
     )
 
@@ -44,15 +43,7 @@ func (storage *AerospikeStorage) Query(query AeroQuery) *[]AeroResponse {
         return nil
     }
     for record = range recordset.Records {
-        Bin = AeroResponse{
-            Bins:       &record.Bins,
-            Generation: record.Generation,
-            Expiration: record.Expiration}
-        if record.Key.Value() != nil {
-            Bin.PrimaryKey = record.Key.Value().String()
-        }
-
-        Bins = append(Bins, Bin)
+        Bins = append(Bins, RecordToAeroResponse(record))
     }
     return &Bins
 }

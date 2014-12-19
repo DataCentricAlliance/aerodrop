@@ -15,12 +15,27 @@ type AerospikeStorage struct {
 type AeroResponse struct {
     Bins       *aerospike.BinMap `json:"bins"`
     Generation int               `json:"version"`
-    Expiration int               `json:"ttl"`
+    Expiration int               `json:"expiration"`
     PrimaryKey string            `json:"pk"`
 }
 
 var aerospike_connection_lock sync.Mutex
 var aerospike_storage *AerospikeStorage
+
+func RecordToAeroResponse(record *aerospike.Record) *AeroResponse {
+    var response AeroResponse
+
+    response = AeroResponse{
+        Bins:       &record.Bins,
+        Generation: record.Generation,
+        Expiration: record.Expiration}
+
+    if record.Key.Value() != nil {
+        response.PrimaryKey = record.Key.Value().String()
+    }
+
+    return &response
+}
 
 func InitAerospikeClient() Storage {
     var Hosts []*aerospike.Host

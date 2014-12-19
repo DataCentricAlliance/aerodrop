@@ -17,3 +17,4 @@ gom 'github.com/daviddengcn/go-colortext'
 gom 'gopkg.in/matm/v1/gocov-html'
 gom 'github.com/axw/gocov/gocov'
 gom 'github.com/op/go-logging'
+gom "gopkg.in/yaml.v2"

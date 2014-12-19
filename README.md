@@ -2,8 +2,7 @@
 
 ## Debian/Ubuntu
 * apt-get install -qq -yy git mercurial  bison make curl
-* wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-insta
-ller
+* wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-installer
 * bash /tmp/gvm-installer
 * source ~/.gvm/scripts/gvm
 * gvm install go1.4
@@ -18,8 +17,7 @@ ller
 
 ## Mac OS X (homebrew)
 * brew install git mercurial  bison make curl
-* wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-insta
-ller
+* wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-installer
 * bash /tmp/gvm-installer
 * source ~/.gvm/scripts/gvm
 * gvm install go1.4
@@ -158,7 +156,7 @@ Content-Length: 286
     * primary key - 7782
     * filter statements - user_id_7782=7782, also you can pass multiple statements (example: user_id=user_x&action=new)
 
-#### Example Request
+##### Example Request
 
 ```
 GET /v1/query/disk/demo/?user_id_7782=7782 HTTP/1.1

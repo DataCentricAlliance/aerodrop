@@ -78,7 +78,7 @@ func HttpHandlerV1Query(w http.ResponseWriter, req *http.Request, namespace stri
     var (
         query     AeroQuery = AeroQuery{namespace: namespace, set: set, queries: make(map[string]AeroQueryCond, 0)}
         cond      AeroQueryCond
-        repsonses *[]AeroResponse
+        repsonses *[]*AeroResponse
         encoder   *json.Encoder = json.NewEncoder(w)
     )
 

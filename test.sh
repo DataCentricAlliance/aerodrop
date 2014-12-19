@@ -15,6 +15,8 @@ http -v --json PUT localhost:8080/20141217/item/disk/demo/$ITEM_ID \
     meta:='{"ttl": 3600}'\
     bins:='{"'user_id_${ITEM_ID}'": "'$ITEM_ID'"}'
 
+
+sleep 1
 echo "FETCH BY PK"
 http -v GET localhost:8080/20141217/item/disk/demo/$ITEM_ID
 
@@ -22,8 +24,9 @@ echo "FETCH BY user_id_${ITEM_ID}"
 http -v GET localhost:8080/20141217/query/disk/demo/?user_id_${ITEM_ID}=$ITEM_ID
 
 
+sleep 1
 echo "MULTIFETCH BY PK"
-http -v GET localhost:8080/20141217/item/disk/demo/1,2,3,4
+http -v GET localhost:8080/20141217/item/disk/demo/1,2,3,4,$ITEM_ID
 
 echo "CLEAN ITEM"
 http -v DELETE localhost:8080/20141217/item/disk/demo/$ITEM_ID
