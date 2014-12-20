@@ -175,4 +175,4 @@ Content-Length: 63
 
 # Know Problems
 * aerospike-client-go doesn't support custom digest for key
-
+* also aerospike-client-go dosn't support float data type conversion
