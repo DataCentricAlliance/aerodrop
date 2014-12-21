@@ -176,3 +176,37 @@ Content-Length: 63
 # Know Problems
 * aerospike-client-go doesn't support custom digest for key
 * also aerospike-client-go dosn't support float data type conversion
+
+
+# Memcache Interface for Aerospike
+
+## get
+### request
+```
+get disk.user_id.some_key\r\n
+```
+### response
+```
+VALUE disk.user_id.some_key 0 29\r\n
+{"bla":"xxxxx","user_id":"1"}\r\n
+END\r\n
+```
+
+
+## set
+### request
+```
+set disk.user_id.some_key 0 15 32\r\n
+{"bla": "xxxxx", "user_id": "1"}\r\n
+```
+### responsr
+
+```
+STORED\r\n
+```
+### definition
+
+where is:
+    * disk is namespace
+    * user_id is set
+    * some_key is pk
