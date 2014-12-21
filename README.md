@@ -191,7 +191,11 @@ VALUE disk.user_id.some_key 0 29\r\n
 {"bla":"xxxxx","user_id":"1"}\r\n
 END\r\n
 ```
-
+if found or
+```
+END\r\n
+```
+when not found
 
 ## set
 ### request
@@ -199,7 +203,7 @@ END\r\n
 set disk.user_id.some_key 0 15 32\r\n
 {"bla": "xxxxx", "user_id": "1"}\r\n
 ```
-### responsr
+### response
 
 ```
 STORED\r\n
@@ -210,3 +214,19 @@ where is:
 - disk — namespace
 - user_id — set
 - some_key — primary key
+
+
+## delete
+### request
+```
+delete disk.user_id.some_key\r\n
+```
+### response
+```
+DELETED\r\n
+```
+or
+
+```
+NOT_FOUND\r\n
+```

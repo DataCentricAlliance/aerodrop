@@ -55,6 +55,9 @@ func handleRequest(conn net.Conn) {
         case "get":
             MemcacheHandlerGet(conn, reader, buf)
             break
+        case "delete":
+            MemcacheHandlerDelete(conn, reader, buf)
+            break
 
         default:
             panic(fmt.Sprintf("Unknown action %s", action))
@@ -111,6 +114,35 @@ func MemcacheHandlerSet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
     } else {
         panic("unable to save")
     }
+}
+
+func MemcacheHandlerDelete(conn net.Conn, reader *bufio.Reader, first_line []byte) {
+
+    var (
+        query     AeroDelete
+        key       []byte
+        key_items [][]byte
+        err       error
+        i         int
+    )
+
+    if i, err = fmt.Sscanf(string(first_line), "delete %s\r\n", &key); err != nil {
+        panic(fmt.Sprintf("unable to parse query - %s", err))
+    } else if i != 1 {
+        panic(fmt.Sprintf("unable to parse (parsed %d, but 1 must)", i))
+    }
+
+    key_items = bytes.Split(key, []byte("."))
+
+    query = AeroDelete{namespace: string(key_items[0]), set: string(key_items[1])}
+    query.pk = string(bytes.Join(key_items[2:], []byte(".")))
+
+    if aerospike_storage.Delete(query) {
+        conn.Write([]byte("DELETED\r\n"))
+        return
+    }
+    conn.Write([]byte("NOT_FOUND\r\n"))
+
 }
 
 func MemcacheHandlerGet(conn net.Conn, reader *bufio.Reader, first_line []byte) {
