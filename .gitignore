@@ -4,3 +4,4 @@ aerospike-proxy
 *.prof
 reports/*
 .DS_Store
+aerospike-proxy.iml
