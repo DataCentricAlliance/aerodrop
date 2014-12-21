@@ -207,6 +207,6 @@ STORED\r\n
 ### definition
 
 where is:
-    * disk is namespace
-    * user_id is set
-    * some_key is pk
+- disk — namespace
+- user_id — set
+- some_key — primary key
