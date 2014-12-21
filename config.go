@@ -22,6 +22,9 @@ type Config struct {
     Http struct {
         Port string
     }
+    Memcache struct {
+        Port string
+    }
 }
 
 var config *Config

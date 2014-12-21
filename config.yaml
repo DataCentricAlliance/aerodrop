@@ -9,3 +9,6 @@ aerospike:
 
 http:
     port: 8080
+
+memcache:
+    port: 11212
