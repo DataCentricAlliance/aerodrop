@@ -5,3 +5,4 @@ aerospike-proxy
 reports/*
 .DS_Store
 aerospike-proxy.iml
+.idea
