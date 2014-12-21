@@ -179,7 +179,11 @@ func (listener *MemcacheListener) Run() bool {
 }
 
 func RunMemcacheListener() bool {
-    return Memcache.Run()
+    if config.Memcache.Port != "" {
+        return Memcache.Run()
+    } else {
+        return false
+    }
 }
 
 func init() {

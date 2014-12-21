@@ -10,9 +10,7 @@ import (
     "strings"
 )
 
-type HttpListener struct {
-    warhouse map[string]map[string]map[string]interface{}
-}
+type HttpListener struct{}
 
 var Http *HttpListener
 
@@ -208,7 +206,11 @@ func (listener *HttpListener) Run() bool {
 }
 
 func RunHTTPListener() bool {
-    return Http.Run()
+    if config.Http.Port != "" {
+        return Http.Run()
+    } else {
+        return false
+    }
 }
 
 func init() {
