@@ -5,6 +5,7 @@ import (
     "fmt"
     "github.com/aerospike/aerospike-client-go/types"
     "net/http"
+    _ "net/http/pprof"
     "net/url"
     "runtime/debug"
     "strings"
@@ -126,6 +127,7 @@ func HttpHandlerV1(w http.ResponseWriter, req *http.Request) {
     var namespace string
     var action string
     var set string
+    var key string
     var aerospike_error_code int
 
     w.Header().Set("Content-Type", "application/json")
@@ -171,19 +173,21 @@ func HttpHandlerV1(w http.ResponseWriter, req *http.Request) {
         panic(fmt.Sprintf("Unknown method %s for action %s", req.Method, action))
 
     case "item":
-        if len(parts) != 1 || parts[0] == "" {
+        if len(parts) < 1 || parts[0] == "" {
             panic("Need PK")
         }
+        key = strings.Join(parts, "/")
+
         if req.Method == "GET" {
-            HttpHandlerV1Get(w, req, namespace, set, parts[0])
+            HttpHandlerV1Get(w, req, namespace, set, key)
             break
         }
         if req.Method == "PUT" {
-            HttpHandlerV1New(w, req, namespace, set, parts[0])
+            HttpHandlerV1New(w, req, namespace, set, key)
             break
         }
         if req.Method == "DELETE" {
-            HttpHandlerV1Remove(w, req, namespace, set, parts[0])
+            HttpHandlerV1Remove(w, req, namespace, set, key)
             break
         }
         panic(fmt.Sprintf("Unknown method %s for action %s", req.Method, action))

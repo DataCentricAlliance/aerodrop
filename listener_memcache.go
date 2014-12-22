@@ -97,7 +97,7 @@ func MemcacheHandlerSet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
 
     key_items = bytes.Split(key, []byte("."))
     if len(key_items) < 3 {
-        panic(fmt.Sprintf("unable to parse key (parsed %d, but 3 must)", len(key_items)))
+        panic(fmt.Sprintf("unable to parse key (parsed %d (%s), but 3 must)", len(key_items), key))
     }
     query.namespace = string(key_items[0])
     query.set = string(key_items[1])

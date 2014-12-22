@@ -15,3 +15,5 @@ gvm install go1.3
 gvm use go1.3 --global
 
 go get github.com/mattn/gom
+gom install
+gom build
