@@ -1,5 +1,14 @@
 # Change history
 
+## 2014.12.23 / 0.0.5 some refactoring
+* **Refactoring **
+    * Rename files
+    * Rename expiration to ttl
+
+## 2014.12.21 / 0.0.4 add memcache listener
+* **Features**
+    * Support memcache protocol, but only get/set/delete commands
+
 ## 2014.12.19 / 0.0.3 add RecordToAeroResponse
 * ** Refactoring **
 
