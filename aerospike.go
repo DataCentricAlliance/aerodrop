@@ -15,7 +15,7 @@ type AerospikeStorage struct {
 type AeroResponse struct {
     Bins       *aerospike.BinMap `json:"bins"`
     Generation int               `json:"version"`
-    Expiration int               `json:"expiration"`
+    Ttl        int               `json:"ttl"`
     PrimaryKey string            `json:"pk"`
 }
 
@@ -28,7 +28,7 @@ func RecordToAeroResponse(record *aerospike.Record) *AeroResponse {
     response = AeroResponse{
         Bins:       &record.Bins,
         Generation: record.Generation,
-        Expiration: record.Expiration}
+        Ttl:        record.Expiration}
 
     if record.Key.Value() != nil {
         response.PrimaryKey = record.Key.Value().String()
