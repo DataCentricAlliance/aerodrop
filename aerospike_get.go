@@ -5,13 +5,13 @@ import (
     "time"
 )
 
-type AeroPK struct {
+type AeroGet struct {
     namespace string
     set       string
     pk        []string
 }
 
-func (storage *AerospikeStorage) BatchGet(query AeroPK) *[]*AeroResponse {
+func (storage *AerospikeStorage) BatchGet(query AeroGet) *[]*AeroResponse {
     var (
         records []*aerospike.Record
         record  *aerospike.Record
@@ -48,7 +48,7 @@ func (storage *AerospikeStorage) BatchGet(query AeroPK) *[]*AeroResponse {
     return &Bins
 }
 
-func (storage *AerospikeStorage) Get(query AeroPK) *AeroResponse {
+func (storage *AerospikeStorage) Get(query AeroGet) *AeroResponse {
     var (
         record *aerospike.Record
         err    error

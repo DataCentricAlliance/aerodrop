@@ -16,7 +16,7 @@ type HttpListener struct{}
 var Http *HttpListener
 
 func HttpHandlerV1New(w http.ResponseWriter, req *http.Request, namespace string, set string, pk string) {
-    var query AeroNew = AeroNew{namespace: namespace, set: set, pk: pk}
+    var query AeroPut = AeroPut{namespace: namespace, set: set, pk: pk}
     var decoder *json.Decoder = json.NewDecoder(req.Body)
     decoder.Decode(&query.data)
     if len(query.data.Bins) == 0 {
@@ -45,7 +45,7 @@ func HttpHandlerV1IndexRemove(w http.ResponseWriter, req *http.Request, namespac
 }
 
 func HttpHandlerV1Get(w http.ResponseWriter, req *http.Request, namespace string, set string, pk string) {
-    var query AeroPK = AeroPK{namespace: namespace, set: set, pk: strings.Split(pk, ",")}
+    var query AeroGet = AeroGet{namespace: namespace, set: set, pk: strings.Split(pk, ",")}
     var response *AeroResponse
     var responses *[]*AeroResponse
     var encoder *json.Encoder = json.NewEncoder(w)

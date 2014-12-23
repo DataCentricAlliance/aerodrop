@@ -69,7 +69,7 @@ func MemcacheHandlerSet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
 
     // var buf []byte
     var (
-        query      AeroNew = AeroNew{}
+        query      AeroPut = AeroPut{}
         exptime    int
         value_len  int
         readed_len int
@@ -148,7 +148,7 @@ func MemcacheHandlerDelete(conn net.Conn, reader *bufio.Reader, first_line []byt
 func MemcacheHandlerGet(conn net.Conn, reader *bufio.Reader, first_line []byte) {
 
     var (
-        query     AeroPK
+        query     AeroGet
         key       []byte
         key_items [][]byte
         response  *AeroResponse
@@ -164,7 +164,7 @@ func MemcacheHandlerGet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
         panic(fmt.Sprintf("unable to parse (parsed %d, but 1 must)", i))
     }
     key_items = bytes.Split(key, []byte("."))
-    query = AeroPK{}
+    query = AeroGet{}
     query.namespace = string(key_items[0])
     query.set = string(key_items[1])
     query.pk = []string{string(bytes.Join(key_items[2:], []byte(".")))}

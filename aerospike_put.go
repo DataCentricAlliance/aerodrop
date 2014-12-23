@@ -5,7 +5,7 @@ import (
     "time"
 )
 
-type AeroNew struct {
+type AeroPut struct {
     namespace string
     set       string
     pk        string
@@ -18,7 +18,7 @@ type AeroNew struct {
     }
 }
 
-func (storage *AerospikeStorage) Put(query AeroNew) bool {
+func (storage *AerospikeStorage) Put(query AeroPut) bool {
     var (
         err    error
         Key    *aerospike.Key
