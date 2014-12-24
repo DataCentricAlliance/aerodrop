@@ -27,7 +27,7 @@
 * go get github.com/mattn/gom
 * gom install
 * gom build
-* run ./aerospike_client --config=config.yaml
+* ./aerospike_client --config=config.yaml
 
 
 # HTTP Interface for Aerospike
@@ -35,20 +35,20 @@
 ## Example HTTP Request/Response
 
 ### Response explain
-    bins - user data
-    ttl - meta argument with time until expiration
-    version - record's generation
-    pk - primary key of record
+bins - user data
+ttl - meta argument with time until expiration
+version - record's generation
+pk - primary key of record
 
 ### Index
 
 ##### Explain
 * Url for create new index is  /v1/index/disk/demo/index_7782
-    * v1 - version
-    * index - action
-    * namespace - disk
-    * set - demo
-    * index name - index_7782
+* v1 - version
+* index - action
+* namespace - disk
+* set - demo
+* index name - index_7782
 
 
 #### Create Index
@@ -76,11 +76,11 @@ Content-Length: 0
 ##### Explain
 
 * Url for create new index is  /v1/item/disk/demo/7782
-    * v1 - version
-    * item - action
-    * namespace - disk
-    * set - demo
-    * primary key - 7782
+* v1 - version
+* item - action
+* namespace - disk
+* set - demo
+* primary key - 7782
 
 #### New/Update Item
 
@@ -151,12 +151,12 @@ Content-Length: 286
 ##### Explain
 
 * Url for create new index is  /v1/query/disk/demo/?user_id_7782=7782
-    * v1 - version
-    * query - action
-    * namespace - disk
-    * set - demo
-    * primary key - 7782
-    * filter statements - user_id_7782=7782, also you can pass multiple statements (example: user_id=user_x&action=new)
+* v1 - version
+* query - action
+* namespace - disk
+* set - demo
+* primary key - 7782
+* filter statements - user_id_7782=7782, also you can pass multiple statements (example: user_id=user_x&action=new)
 
 ##### Example Request
 
