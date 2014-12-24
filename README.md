@@ -1,3 +1,5 @@
+# Aerodrop is REST and Memcache interface for Aerospike
+
 # Build
 
 ## Debian/Ubuntu
