@@ -16,7 +16,7 @@
 * run /usr/local/sbin/aerospike_client --config=/etc/aerospike_client.yaml
 
 ## Mac OS X (homebrew)
-* brew install git mercurial  bison make curl
+* brew install git mercurial bison curl
 * wget -q https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -O /tmp/gvm-installer
 * bash /tmp/gvm-installer
 * source ~/.gvm/scripts/gvm
