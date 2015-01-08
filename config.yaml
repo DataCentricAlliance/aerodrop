@@ -1,6 +1,7 @@
 aerospike:
     connection_timeout: 100
     read_timeout: 1
+    connection_queue_size: 512
     write_timeout: 10
     hosts:
         -

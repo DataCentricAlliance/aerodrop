@@ -11,10 +11,11 @@ type Config struct {
 	Backend_timeout         int
 	MaxKeepAliveConnections int
 	Aerospike               struct {
-		WriteTimeout      int
-		ReadTimeout       int
-		ConnectionTimeout int
-		Hosts             []struct {
+		WriteTimeout        int
+		ReadTimeout         int
+		ConnectionTimeout   int
+		ConnectionQueueSize int
+		Hosts               []struct {
 			Host string
 			Port int
 		}

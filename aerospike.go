@@ -52,6 +52,11 @@ func InitAerospikeClient() Storage {
 		}
 
 		policy := aerospike.NewClientPolicy()
+
+		if config.Aerospike.ConnectionQueueSize > 0 {
+			policy.ConnectionQueueSize = config.Aerospike.ConnectionQueueSize
+		}
+
 		if config.Aerospike.ConnectionTimeout > 0 {
 			policy.Timeout = time.Duration(config.Aerospike.ConnectionTimeout) * time.Millisecond
 		}
