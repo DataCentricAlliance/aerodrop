@@ -73,6 +73,7 @@ func MemcacheHandlerSet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
 		exptime    int
 		value_len  int
 		readed_len int
+		skip_len   int
 		key        []byte
 		key_items  [][]byte
 		buf        []byte
@@ -87,11 +88,17 @@ func MemcacheHandlerSet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
 		panic(fmt.Sprintf("unable to parse (parsed %d, but 5 must)", i))
 	}
 
+	skip_len = 0
 	buf = make([]byte, value_len)
-	if readed_len, err = reader.Read(buf); err != nil {
-		panic(fmt.Sprintf("Unable to read value (%s)", err))
-	} else if readed_len != value_len {
-		panic("Wrong size")
+	for value_len > 0 {
+		if readed_len, err = reader.Read(buf[skip_len : value_len+skip_len]); err != nil {
+			panic(fmt.Sprintf("Unable to read value (%s)", err))
+		} else if readed_len > value_len {
+			panic(fmt.Sprintf("Wrong size (%d != %d)", readed_len, value_len))
+		}
+		value_len -= readed_len
+		skip_len += readed_len
+
 	}
 	reader.ReadBytes('\n')
 
