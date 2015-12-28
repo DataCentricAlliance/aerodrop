@@ -12,8 +12,8 @@ type AeroPut struct {
 	data      struct {
 		Bins map[string]interface{} `json:"bins"`
 		Meta struct {
-			Ttl        int32 `json:"ttl"`
-			Generation int32 `json:"version"`
+			Ttl        uint32 `json:"ttl"`
+			Generation uint32 `json:"version"`
 		} `json:"meta"`
 	}
 }

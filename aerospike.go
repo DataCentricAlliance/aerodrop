@@ -14,8 +14,8 @@ type AerospikeStorage struct {
 
 type AeroResponse struct {
 	Bins       *aerospike.BinMap `json:"bins"`
-	Generation int               `json:"version"`
-	Ttl        int               `json:"ttl"`
+	Generation uint32               `json:"version"`
+	Ttl        uint32               `json:"ttl"`
 	PrimaryKey string            `json:"pk"`
 }
 
