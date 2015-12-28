@@ -11,7 +11,6 @@ gom "github.com/fatih/stopwatch"
 gom "github.com/fatih/structs"
 gom "github.com/timtadh/data-structures"
 gom "golang.org/x/tools/cmd/cover"
-gom 'gopkg.in/emicklei/hopwatch.v1'
 gom 'github.com/davecgh/go-spew/spew'
 gom 'github.com/daviddengcn/go-colortext'
 gom 'gopkg.in/matm/v1/gocov-html'

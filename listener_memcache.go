@@ -109,7 +109,7 @@ func MemcacheHandlerSet(conn net.Conn, reader *bufio.Reader, first_line []byte) 
 	query.namespace = string(key_items[0])
 	query.set = string(key_items[1])
 	query.pk = string(bytes.Join(key_items[2:], []byte(".")))
-	query.data.Meta.Ttl = int32(exptime)
+	query.data.Meta.Ttl = uint32(exptime)
 
 	if err = json.Unmarshal(buf, &query.data.Bins); err != nil {
 		panic(fmt.Sprintf("unable to load value as json %s", err))
